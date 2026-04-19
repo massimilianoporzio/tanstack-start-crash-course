@@ -1,9 +1,14 @@
+/*
+ *   Copyright (c) 2026 Massimiliano Porzio
+ *   All rights reserved.
+ */
 import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
+import babel from '@rolldown/plugin-babel'
 
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 
-import viteReact from '@vitejs/plugin-react'
+import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 const config = defineConfig({
@@ -12,11 +17,8 @@ const config = defineConfig({
     devtools(),
     tailwindcss(),
     tanstackStart(),
-    viteReact({
-      babel: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
-    }),
+    viteReact(),
+    babel({ presets: [reactCompilerPreset()] }),
   ],
 })
 
