@@ -1,0 +1,47 @@
+/*
+ *   Copyright (c) 2026 Massimiliano Porzio
+ *   All rights reserved.
+ */
+
+import { Heart } from "lucide-react";
+import { useState } from "react";
+
+/*
+ *   Copyright (c) 2026 Massimiliano Porzio
+ *   All rights reserved.
+ */
+type SkillCardProps = {
+	// Define any props if needed
+	name: string;
+};
+const SkillCard = ({ name }: SkillCardProps) => {
+	const [liked, setLiked] = useState(false);
+	const likes = liked ? 1 : 0;
+	return (
+		<article className="feature-card island-shell rise-in rounded-3xl p-5">
+			<div className="flex items-start justify-between gap-4">
+				<div className="space-y-2">
+					<p className="island-kicker">Skill</p>
+					<h2 className="display-title text-2xl font-bold">{name}</h2>
+					<p className="text-sm text-(--sea-ink-soft)">
+						{likes} {likes === 1 ? "like" : "likes"}
+					</p>
+				</div>
+				<button
+					className="inline-flex size-11 items-center justify-center 
+					rounded-full border border-(--line) bg-(--surface-strong)
+					text-(--sea-ink) shadow-md"
+					type="button"
+					onClick={() => setLiked(!liked)}
+				>
+					<Heart
+						className={liked ? "fill-current text-(--lagoon-deep)" : ""}
+						size={18}
+					/>
+				</button>
+			</div>
+		</article>
+	);
+};
+
+export default SkillCard;
